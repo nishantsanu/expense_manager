@@ -1,0 +1,27 @@
+{
+  "name": "expense_manager",
+  "version": "1.0.0",
+  "description": "expense manager app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishantsanu/expense_manager.git"
+  },
+  "author": "nishant kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nishantsanu/expense_manager/issues"
+  },
+  "homepage": "https://github.com/nishantsanu/expense_manager#readme",
+  "dependencies": {
+    "connect-mongo": "^3.0.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "jquery": "^3.4.1",
+    "mongoose": "^5.6.8"
+  }
+}
