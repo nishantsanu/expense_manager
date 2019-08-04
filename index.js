@@ -14,6 +14,9 @@ app.set('layout extractScripts',true);
 app.set('view engine','ejs');
 app.set('views','./views');
 
+//require database
+const db= require('./config/mongoose');
+
 //using static
 app.use(express.static('./assets/'));
 

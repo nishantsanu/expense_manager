@@ -6,5 +6,6 @@ const homecontroller=require('../controllers/home_controller');
 console.log('router loaded');
 
 router.get('/',homecontroller.home);
+router.get('/signup',homecontroller.signup);
 
 module.exports=router;
