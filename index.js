@@ -5,8 +5,13 @@ const port=8000;
 const expressLayouts=require('express-ejs-layouts');
 
 const cookieParser= require('cookie-parser');
-var bodyParser = require('body-parser'); 
+const session=require('express-session');
+const bodyParser = require('body-parser'); 
+const passport=require('passport');
+const MongoStore=require('connect-mongo')(session);
 
+
+const passportLocal=require('./config/passport-local-strategy');
 
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
@@ -19,29 +24,22 @@ app.set('views','./views');
 const db= require('./config/mongoose');
 
 
+app.use(express.urlencoded());
 
-//used for session cookie
-const session=require('express-session');
-const passport=require('passport');
-const passportLocal=require('./config/passport-local-strategy');
-
-
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(expressLayouts);
-
-// cookieParser should be above session
 app.use(cookieParser());
 
-// bodyParser should be above methodOverride
-app.use(bodyParser());
+app.use(expressLayouts);
+
+
 
 //using static
 app.use(express.static('./assets/'));
 
-//use express router
-app.use('/',require('./routes'));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
+
 
 app.use(session({
     name:'ExpManager',
@@ -51,11 +49,19 @@ app.use(session({
     resave:false,
     cookie:{
         maxAge:(1000*60*100)
-    }
-}));
+    },
+    store:new MongoStore(
+        {
 
-app.use(passport.initialize());
-app.use(passport.session());
+        mongooseConnection:db,
+        autoRemove:'disabled'
+
+        },
+        function(err){
+            console.log(err || 'connect mongo-db setup ok');
+        }
+    )
+}));
 
 //use express router
 app.use('/',require('./routes'));
