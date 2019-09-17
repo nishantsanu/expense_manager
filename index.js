@@ -4,6 +4,8 @@ const port=8000;
 
 const expressLayouts=require('express-ejs-layouts');
 
+const cookieParser= require('cookie-parser');
+
 app.use(express.urlencoded());
 app.use(expressLayouts);
 

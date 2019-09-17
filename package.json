@@ -18,6 +18,7 @@
   "homepage": "https://github.com/nishantsanu/expense_manager#readme",
   "dependencies": {
     "connect-mongo": "^3.0.0",
+    "cookie-parser": "^1.4.4",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",

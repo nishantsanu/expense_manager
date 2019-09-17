@@ -17,14 +17,4 @@ module.exports.home=  async function(req,res){
 
 }
 
-module.exports.signup = async function(req,res){
-    try {
-        return res.render('sign_up',{
-            title: "ExpManager | Signup",
-        })
-    } catch (err) {
-        console.log('Error in signup', err);
-        
-    }
-}
 
