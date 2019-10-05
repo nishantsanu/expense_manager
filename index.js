@@ -35,10 +35,8 @@ app.use(expressLayouts);
 //using static
 app.use(express.static('./assets/'));
 
-app.use(passport.initialize());
-app.use(passport.session());
 
-app.use(passport.setAuthenticatedUser);
+
 
 
 app.use(session({
@@ -47,6 +45,7 @@ app.use(session({
     secret:'blahsomething',
     saveUninitialized:false,
     resave:false,
+    cookie: { secure: false },
     cookie:{
         maxAge:(1000*60*100)
     },
@@ -62,6 +61,11 @@ app.use(session({
         }
     )
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
+
 
 //use express router
 app.use('/',require('./routes'));

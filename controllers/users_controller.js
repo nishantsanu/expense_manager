@@ -10,12 +10,21 @@ module.exports.profile=function(req,res){
 
 //render the signin page
 module.exports.signin=function(req,res){
+    if(req.isAuthenticated()){
+        console.log('yes');
+        return res.redirect('/');
+     }
+
     return res.render('sign_in',{
         title:'ExpManager | Signin'
     });
 }
 //render the signup page
 module.exports.signup=function(req,res){
+    if(req.isAuthenticated()){
+        console.log('yes');
+        return res.redirect('/');
+     }
     return res.render('sign_up',{
         title: "ExpManager | Signup",
     });
@@ -46,6 +55,7 @@ module.exports.create=function(req,res){
 module.exports.createSession=function(req,res){
     //step to authenticate
     //find the user
+   
     // User.findOne({ email:req.body.email},function(err,user){
     //     if(err){console.log('Error in signin'); return;}
     //     //user found
@@ -56,6 +66,7 @@ module.exports.createSession=function(req,res){
     //         }
     //         //handle session creation
     //         res.cookie('user_id',user.id);
+
     //         return res.redirect('/');
 
     //     }
@@ -66,6 +77,11 @@ module.exports.createSession=function(req,res){
     // });
     console.log('login successful');
     return res.redirect('/');
+} 
 
-
+module.exports.destroySession=function(req,res){
+    req.logout();
+    req.session = null;
+    res.clearCookie("ExpManager");
+    return res.redirect('/');
 } 
