@@ -1,3 +1,10 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="/css/user_signup.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">ExpManager</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,3 +29,37 @@
       </form>
     </div>
   </nav>
+
+  <form action="/users/transaction" method="POST">
+    <select class="custom-select col-3" name="accounttype">
+        <option selected>Open this select menu</option>
+        <option value="cash">CASH</option>
+        <option value="card1">CARD 1</option>
+        <option value="card2">CARD 2</option>
+      </select>
+
+    <div class="form-group">
+       <label>Enter amount</label>
+       <input type="" class="form-control col-3" placeholder="Amount" name="amount">
+       <input type="hidden" name="userid" value="<%= user._id %>">
+    </div>
+    <button type="submit" class="btn btn-black m-1">Submit</button>
+   
+ </form>
+
+ <div id="transaction-container">
+    <ul id="">
+        <% for(transaction of transactions){ %>
+           
+            <h3><%=transaction.content%></h3> 
+           
+        <% } %>
+    </ul>
+    <hr>
+    <h1>Total Balance = <%= sum %></h1>
+    <h2>Cash Balance = <%= cash %></h2>
+    <h2>Card 1 Balance = <%= card1 %></h2>
+    <h2>Card 2 Balance = <%= card2 %></h2>
+</div>
+
+

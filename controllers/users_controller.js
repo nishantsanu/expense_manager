@@ -1,5 +1,6 @@
 //require user from model
 const User=require('../models/user');
+const Transaction=require('../models/transaction');
 
 module.exports.profile=function(req,res){
 
@@ -33,7 +34,6 @@ module.exports.signup=function(req,res){
 
 
 module.exports.create=function(req,res){
-    console.log(req.body);
     if(req.body.password!=req.body.confirm_password){
         return res.redirect('back');
     }
@@ -85,3 +85,8 @@ module.exports.destroySession=function(req,res){
     res.clearCookie("ExpManager");
     return res.redirect('/');
 } 
+
+module.exports.createTransaction=function(req,res){
+    console.log('inside create transaction');
+   return res.json({ a: 1 });
+}

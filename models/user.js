@@ -8,10 +8,25 @@ const userSchema= new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
+    },
+    transactions: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Transaction'
+        }
+    ]
 },{
     timestamps:true
 });
+
+
+
+
+
+
+
+
+
 
 // timestamps stored created at and updated at
 
@@ -27,4 +42,5 @@ const signinSchema= new mongoose.Schema({
         type:String,
         required:true
     }
-})
+});
+

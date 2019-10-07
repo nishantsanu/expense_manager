@@ -17,17 +17,18 @@
                <form action="/users/create" method="POST">
                   <div class="form-group">
                      <label>User Name</label>
-                     <input type="email" class="form-control" placeholder="User Name" name="email">
+                     <input type="email" class="form-control" placeholder="User Name" name="email" required>
                   </div>
                   <div class="form-group">
                      <label>Password</label>
-                     <input type="password" class="form-control" placeholder="Password" name="password">
+                     <input type="password" class="form-control" placeholder="Password" name="password" required>
                   </div>
                   <div class="form-group">
                     <label>Confirm Password</label>
-                    <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password">
+                    <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required>
                  </div>
                   <button type="submit" class="btn btn-black">Register</button>
+                  <a href="/users/signin" class="btn btn-secondary">Sign In</a>
                   <!-- <button type="submit" class="btn btn-secondary">Register</button> -->
                </form>
             </div>

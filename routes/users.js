@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const usersController=require('../controllers/users_controller');
+const transactionController= require('../controllers/transaction_controller');
 const passport=require('passport');
 
 router.get('/profile',usersController.profile);
@@ -21,5 +22,7 @@ router.post('/create-session',passport.authenticate(
 ),usersController.createSession);
 
 router.get('/signout',usersController.destroySession);
+
+router.post('/transaction',transactionController.create);
 
 module.exports=router;
