@@ -12,7 +12,6 @@ module.exports.profile=function(req,res){
 //render the signin page
 module.exports.signin=function(req,res){
     if(req.isAuthenticated()){
-        console.log('yes');
         return res.redirect('/');
      }
 

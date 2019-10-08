@@ -10,7 +10,7 @@ module.exports.home=  async function(req,res){
             return res.redirect('/users/signin');
          }
 
-         let transactions= await Transaction.find({})
+         let transactions= await Transaction.find({user:req.user._id})
         .sort('-createdAt')
         .populate('user');
 

@@ -40,3 +40,18 @@ module.exports.create = async function(req,res){
     }
     
     }
+
+
+
+    module.exports.delete = async function(req,res){
+        try {
+            let transaction = await Transaction.findById(req.params.id);
+
+            transaction.remove();
+
+            res.redirect('back');
+
+        } catch (err) {
+            console.log('error in deleting transaction');
+        }
+     }

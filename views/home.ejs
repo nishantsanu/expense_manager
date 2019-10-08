@@ -30,7 +30,7 @@
     </div>
   </nav>
 
-  <form action="/users/transaction" method="POST">
+  <form action="/users/transaction/create" method="POST">
     <select class="custom-select col-3" name="accounttype">
         <option selected>Open this select menu</option>
         <option value="cash">CASH</option>
@@ -51,7 +51,9 @@
     <ul id="">
         <% for(transaction of transactions){ %>
            
-            <h3><%=transaction.content%></h3> 
+            <h3><%=transaction.content%> -  <%= transaction.accounttype%></h3>
+            <a href="/users/transaction/delete/<%=transaction.id%>">X</a>
+            
            
         <% } %>
     </ul>

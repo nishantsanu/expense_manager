@@ -23,6 +23,8 @@ router.post('/create-session',passport.authenticate(
 
 router.get('/signout',usersController.destroySession);
 
-router.post('/transaction',transactionController.create);
+router.use('/transaction',require('./transactions'));
+
+
 
 module.exports=router;
