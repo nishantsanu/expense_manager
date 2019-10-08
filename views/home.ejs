@@ -31,11 +31,25 @@
   </nav>
 
   <form action="/users/transaction/create" method="POST">
+    <label>Select Account Type</label>
+    <br>
     <select class="custom-select col-3" name="accounttype">
-        <option selected>Open this select menu</option>
+        
         <option value="cash">CASH</option>
         <option value="card1">CARD 1</option>
         <option value="card2">CARD 2</option>
+      </select>
+      <br>
+
+      <label>Catogery</label>
+      <br>
+      <select class="custom-select col-3" name="catogery">
+          
+          <option value="income">Income</option>
+          <option value="interest">Interest</option>
+          <option value="loan">Loan</option>
+          <option value="education">Education</option>
+          <option value="food">Food</option>
       </select>
 
     <div class="form-group">
@@ -51,8 +65,10 @@
     <ul id="">
         <% for(transaction of transactions){ %>
            
-            <h3><%=transaction.content%> -  <%= transaction.accounttype%></h3>
-            <a href="/users/transaction/delete/<%=transaction.id%>">X</a>
+            <h3><%=transaction.content%> -  <%= transaction.accounttype%>
+              <a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">X</a>
+            </h3>
+            
             
            
         <% } %>

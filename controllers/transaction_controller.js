@@ -12,6 +12,7 @@ module.exports.create = async function(req,res){
                 content: req.body.amount,
                 user: req.user._id,
                 accounttype: req.body.accounttype,
+                catogery:req.body.catogery,
             });
 
             
@@ -31,8 +32,6 @@ module.exports.create = async function(req,res){
             //     }
         }
 
-        console.log('created transaction');
-      
         return res.redirect('back');
     } catch (err) {
         console.log('error in creating transaction');

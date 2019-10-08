@@ -11,6 +11,11 @@ const tansactionSchema = new mongoose.Schema({
     },
     accounttype:{
         type: String,
+        required: true
+    },
+    catogery:{
+        type: String,
+        required: true
     }
     //include the array of ids of all the comments in this post schema itself
  
