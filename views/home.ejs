@@ -1,8 +1,6 @@
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="/css/user_signup.css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,11 +34,14 @@
     <select class="custom-select col-3" name="accounttype">
         
         <option value="cash">CASH</option>
+        <option value="trf" id="trf">TRANSFER</option>
         <option value="card1">CARD 1</option>
         <option value="card2">CARD 2</option>
       </select>
-      <br>
 
+
+    <div id="catogery-div" style="display: block"> 
+        
       <label>Catogery</label>
       <br>
       <select class="custom-select col-3" name="catogery">
@@ -51,6 +52,26 @@
           <option value="education">Education</option>
           <option value="food">Food</option>
       </select>
+    </div>
+    <div id="trf-div" style="display: none">
+      <label>Select Source</label>
+      <br>
+      <select class="custom-select col-3" name="source">
+        
+        <option value="cash">CASH</option>
+        <option value="card1">CARD 1</option>
+        <option value="card2">CARD 2</option>
+      </select>
+
+      <label>Select Destination</label>
+      <br>
+      <select class="custom-select col-3" name="destination">
+        
+        <option value="cash">CASH</option>
+        <option value="card1">CARD 1</option>
+        <option value="card2">CARD 2</option>
+      </select>
+    </div>
 
     <div class="form-group">
        <label>Enter amount</label>
@@ -80,4 +101,9 @@
     <h2>Card 2 Balance = <%= card2 %></h2>
 </div>
 
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/home.js">
+    	
+</script>
 
