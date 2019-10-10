@@ -86,23 +86,45 @@
     </form>
 </div>
  <div id="transaction-container" style="display: inline-block; width: 45vw">
-    <ul id="">
-        <% for(transaction of transactions){ %>
-           
-            <h3><%=transaction.content%> -  <%= transaction.accounttype%>
-              <a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">X</a>
-            </h3>
-            
-            
-           
-        <% } %>
-    </ul>
-    <hr>
+    
     <h1>Total Balance = <%= sum %></h1>
     <h2>Cash Balance = <%= cash %></h2>
     <h2>Card 1 Balance = <%= card1 %></h2>
     <h2>Card 2 Balance = <%= card2 %></h2>
 </div>
+
+<div class="container">
+    <h2>Transaction History</h2>
+    <!-- <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p> -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Source Account</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <% for(transaction of transactions){ %>
+           <tr>
+              <td><%=transaction.content%></td>
+              <td><%= transaction.accounttype%></td>
+              <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
+              
+              
+            </tr>
+         <% } %>
+         <tr>
+            <td><h4><%=sum%></h4></td>
+            <td><h4>BALANCE</h4></td>
+            <td></td>
+           
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
 
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
