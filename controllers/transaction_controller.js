@@ -5,8 +5,27 @@ module.exports.create = async function(req,res){
     try {
         let user = await User.findById(req.user._id);
         if(user){
+            if(req.body.accounttype=='trf'){
+                console.log(req.body.source);
+                let sourceTransaction= await Transaction.create({
+                
+                    content: '-'+req.body.amount,
+                    user: req.user._id,
+                    accounttype: req.body.source,
+                    catogery: 'transfer',
+                });
+                let destinationTransaction= await Transaction.create({
+                
+                    content: req.body.amount,
+                    user: req.user._id,
+                    accounttype: req.body.destination,
+                    catogery: 'transfer',
+                });
+                user.transactions.push(sourceTransaction);
+                user.transactions.push(destinationTransaction);
+                user.save();
 
-                 
+            }else{
             let transaction= await Transaction.create({
                 
                 content: req.body.amount,
@@ -18,6 +37,7 @@ module.exports.create = async function(req,res){
             
                 user.transactions.push(transaction);
                 user.save();    
+             }
                 
             //     comment= await comment.populate('user','name email').execPopulate();
             // //calling comments mailer

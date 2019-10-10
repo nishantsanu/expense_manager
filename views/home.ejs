@@ -27,63 +27,65 @@
       </form>
     </div>
   </nav>
-
-  <form action="/users/transaction/create" method="POST">
-    <label>Select Account Type</label>
-    <br>
-    <select class="custom-select col-3" onchange="toggle(this)" name="accounttype">
-        
-        <option value="cash">CASH</option>
-        <option value="trf" >TRANSFER</option>
-        <option value="card1">CARD 1</option>
-        <option value="card2">CARD 2</option>
-      </select>
-
-
-    <div id="catogery-div" style="display: block"> 
-        
-      <label>Catogery</label>
+<div style="display: inline-block; width: 45vw; vertical-align: top; min-width: 300px;">
+    <form action="/users/transaction/create" method="POST" id="sub-form">
+      <label>Select Account Type</label>
       <br>
-      <select class="custom-select col-3" name="catogery">
+      <select class="custom-select col-10" onchange="toggle(this)" name="accounttype">
           
-          <option value="income">Income</option>
-          <option value="interest">Interest</option>
-          <option value="loan">Loan</option>
-          <option value="education">Education</option>
-          <option value="food">Food</option>
-      </select>
-    </div>
-    <div id="trf-div" style="display: none">
-      <label>Select Source</label>
-      <br>
-      <select class="custom-select col-3" name="source">
-        
-        <option value="cash">CASH</option>
-        <option value="card1">CARD 1</option>
-        <option value="card2">CARD 2</option>
-      </select>
-      <br>
+          <option value="cash">CASH</option>
+          <option value="trf" >TRANSFER</option>
+          <option value="card1">CARD 1</option>
+          <option value="card2">CARD 2</option>
+        </select>
 
-      <label>Select Destination</label>
-      <br>
-      <select class="custom-select col-3" name="destination">
-        
-        <option value="cash">CASH</option>
-        <option value="card1">CARD 1</option>
-        <option value="card2">CARD 2</option>
-      </select>
-    </div>
 
-    <div class="form-group">
-       <label>Enter amount</label>
-       <input type="" class="form-control col-3" placeholder="Amount" name="amount">
-       <input type="hidden" name="userid" value="<%= user._id %>">
-    </div>
-    <button type="submit" class="btn btn-black m-1">Submit</button>
-   
- </form>
+      <div id="catogery-div" style="display: block"> 
+          
+        <label>Catogery</label>
+        <br>
+        <select class="custom-select col-10" name="catogery">
+            
+            <option value="income">Income</option>
+            <option value="interest">Interest</option>
+            <option value="loan">Loan</option>
+            <option value="education">Education</option>
+            <option value="food">Food</option>
+        </select>
+      </div>
+      <div id="trf-div" style="display: none">
+        <label>Select Source</label>
+        <br>
+        <select class="custom-select col-10" name="source" id="src-div" onchange="srcdest()">
+          
+          <option value="cash">CASH</option>
+          <option value="card1">CARD 1</option>
+          <option value="card2">CARD 2</option>
+        </select>
+        <br>
 
- <div id="transaction-container">
+        <label>Select Destination</label>
+        <br>
+        <select class="custom-select col-10" name="destination" id="dest-div" onchange="srcdest()">
+          
+          <option value="cash">CASH</option>
+          <option value="card1">CARD 1</option>
+          <option value="card2">CARD 2</option>
+        </select>
+        <br>
+        <span id="src-dest-comp" style="color: red"></span>
+      </div>
+
+      <div class="form-group">
+        <label>Enter amount</label>
+        <input type="number" class="form-control col-10" placeholder="Amount" name="amount" required step="any">
+        <input type="hidden" name="userid" value="<%= user._id %>">
+      </div>
+      <input type="submit" class="btn btn-black m-1" value="Submit">
+    
+    </form>
+</div>
+ <div id="transaction-container" style="display: inline-block; width: 45vw">
     <ul id="">
         <% for(transaction of transactions){ %>
            
@@ -101,6 +103,7 @@
     <h2>Card 1 Balance = <%= card1 %></h2>
     <h2>Card 2 Balance = <%= card2 %></h2>
 </div>
+
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
