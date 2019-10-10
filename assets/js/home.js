@@ -45,3 +45,14 @@ $('#sub-form').on('submit', function(){
         return true;
     }
 });
+
+//create new catogery
+function categoryFunction(val){
+    if(val.value=='createNewCategory'){
+     console.log('inside it');        
+     document.getElementById('newCategoryDiv').style.display="block";
+     }else{
+     document.getElementById('newCategoryDiv').style.display="none";
+     }
+}
+ 
