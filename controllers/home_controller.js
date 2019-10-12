@@ -17,6 +17,8 @@ module.exports.home=  async function(req,res){
         .populate('category');
 
          let categoryListItems=await Category.find({user:req.user._id});
+         let crListItems=await Category.find({user:req.user._id,transactionType:'Credit'});
+         let drListItems=await Category.find({user:req.user._id,transactionType:'Debit'});
         
         let sum=0;
         let cash=0;
@@ -39,6 +41,8 @@ module.exports.home=  async function(req,res){
             title: "ExpManager | Home",
             transactions: transactions,
             categoryListItems:categoryListItems,
+            crListItems:crListItems,
+            drListItems:drListItems,
             sum:sum,
             cash:cash,
             card1:card1,

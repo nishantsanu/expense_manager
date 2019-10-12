@@ -16,7 +16,8 @@ const tansactionSchema = new mongoose.Schema({
     category:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
-    }
+    },created_at: { type: Date, default: Date.now },
+    updated_at: { type: Date, default: Date.now },
     //include the array of ids of all the comments in this post schema itself
  
 },{

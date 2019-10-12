@@ -32,11 +32,12 @@
       
       
         <div>
-          <input type="hidden" id="finalTansMode" name='tansMode' value="pata nahi">
+          <input type="hidden" id="finalTansMode" name='tansMode' value="none">
           <input TYPE="button" id="credit"class="btn btn-black m-1 addButton"  Value="Credit" onclick="tansModeFunction(this); hello(this);">
           <input TYPE="button" id="debit" class="btn btn-black m-1 addButton"  Value="Debit" onclick="tansModeFunction(this); hello(this);">
           <input TYPE="button" id="transfer"class="btn btn-black m-1 addButton"  Value="Transfer" onclick="tansModeFunction(this); hello(this);">
         </div>
+        <span id="tansModeStatus"></span>
       
         <div id="accountType">
             <label>Select Account Type</label>
@@ -44,7 +45,7 @@
             <select class="custom-select col-10" onchange="toggle(this)" name="accounttype">
               
               <option value="cash">CASH</option>
-              <option value="trf" >TRANSFER</option>
+              <!-- <option value="trf" >TRANSFER</option> -->
               <option value="card1">CARD 1</option>
               <option value="card2">CARD 2</option>
             </select>
@@ -54,7 +55,7 @@
         
 
 
-      <div id="catogery-div" style="display: block"> 
+      <!-- <div id="catogery-div" style="display: block"> 
           
         <label>Catogery</label>
         <br>
@@ -65,7 +66,34 @@
             <% } %>
             <option value="createNewCategory">Create New</option>
         </select>
-      </div>
+      </div> -->
+      <div id="cr-catogery-div" style="display: none"> 
+          
+          <label>Credit Category</label>
+          <br>
+          <select class="custom-select col-10" id="crCatOptions" name="crCategory" onchange="categoryFunction(this)">
+              <option disabled selected value> -- select an option -- </option>
+              <% for(ccl of crListItems){ %>
+                <option value="<%=ccl._id%>"><%=ccl.name%></option>
+              <% } %>
+              <option value="createNewCategory">Create New</option>
+          </select>
+        </div>
+
+
+
+        <div id="dr-catogery-div" style="display: none"> 
+          
+            <label>Debit Category</label>
+            <br>
+            <select class="custom-select col-10" id="drCatOptions" name="drCategory" onchange="categoryFunction(this)">
+                <option disabled selected value> -- select an option -- </option>
+                <% for(dcl of drListItems){ %>
+                  <option value="<%=dcl._id%>"><%=dcl.name%></option>
+                <% } %>
+                <option value="createNewCategory">Create New</option>
+            </select>
+          </div>
       <span id="categoryStatus"></span>
       <div id="newCategoryDiv" style="display: none">
           <label>Create New Category</label>
@@ -120,6 +148,7 @@
         <tr>
           <th>Amount</th>
           <th>Source Account</th>
+          <th>Date and Time</th>
           <th>Category</th>
           <th>Delete</th>
         </tr>
@@ -134,6 +163,7 @@
            <tr>
               <td><%=transaction.content%></td>
               <td><%= transaction.accounttype%></td>
+              <td><%= transaction.createdAt%></td>
               <td><%=transaction.category.name%></td>
               <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
               

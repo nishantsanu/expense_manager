@@ -10,8 +10,4 @@ router.get('/delete/:id',transactionController.delete);
 
 
 
-
-
-
-
 module.exports=router;

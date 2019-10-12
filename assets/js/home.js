@@ -37,9 +37,11 @@ function srcdest(){
 
 
 $('#sub-form').on('submit', function(){
-    var i= !document.getElementById('catOptions').value;
-    console.log(i);
-    if(trftab==true){
+    if(document.getElementById('finalTansMode').value=='none'){
+        document.getElementById('tansModeStatus').style.color='red';
+        document.getElementById('tansModeStatus').innerText="Please Select Mode.";
+        return false;
+    }else if(trftab==true){
         if(document.getElementById('src-div').value==document.getElementById('dest-div').value){
             alert("Source and Destination cant be same");
             return false;
@@ -82,6 +84,7 @@ function tansModeFunction(val){
 }
 
 function hello(val){
+    document.getElementById('tansModeStatus').innerText="";
     var buttons=document.getElementsByClassName('addButton');
     for(button of buttons){
         button.style.boxShadow="";
@@ -91,13 +94,20 @@ function hello(val){
 
 
     if(val.value == 'Transfer'){    
-        document.getElementById('catogery-div').style.display='none';
+        document.getElementById('dr-catogery-div').style.display='none';
+        document.getElementById('cr-catogery-div').style.display='none';
         document.getElementById('trf-div').style.display='block';
-        document.getElementById('accountType').style.display='none';
-    }else{
-        document.getElementById('catogery-div').style.display='block';
+        document.getElementById('accountType').style.display='none'
+    }else if(val.value=='Debit'){
+        document.getElementById('dr-catogery-div').style.display='block';
+        document.getElementById('cr-catogery-div').style.display='none';
         document.getElementById('trf-div').style.display='none';
         document.getElementById('accountType').style.display='block';
+    }else{
+        document.getElementById('dr-catogery-div').style.display='none';
+        document.getElementById('cr-catogery-div').style.display='block';
+        document.getElementById('trf-div').style.display='none';
+        document.getElementById('accountType').style.display='block'
     }
 }
  
