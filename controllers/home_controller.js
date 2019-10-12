@@ -1,6 +1,8 @@
 
 // module.exports.home=function(req,res){
 const Transaction=require('../models/transaction');
+const Category=require('../models/category');
+const User=require('../models/user');
 
 //ASYNC AWAIT
 module.exports.home=  async function(req,res){
@@ -14,6 +16,8 @@ module.exports.home=  async function(req,res){
         .sort('-createdAt')
         .populate('user');
 
+         let categoryListItems=await Category.find({user:req.user._id});
+        
         let sum=0;
         let cash=0;
         let card1=0;
@@ -34,6 +38,7 @@ module.exports.home=  async function(req,res){
         return res.render('home',{
             title: "ExpManager | Home",
             transactions: transactions,
+            categoryListItems:categoryListItems,
             sum:sum,
             cash:cash,
             card1:card1,

@@ -1,5 +1,6 @@
 const User=require('../models/user');
 const Transaction= require('../models/transaction');
+const Category=require('../models/category');
 
 module.exports.create = async function(req,res){
     try {
@@ -26,18 +27,28 @@ module.exports.create = async function(req,res){
                 user.save();
 
             }else{
-            let transaction= await Transaction.create({
-                
-                content: req.body.amount,
-                user: req.user._id,
-                accounttype: req.body.accounttype,
-                catogery:req.body.catogery,
-            });
+                var cat=req.body.catogery;
+                if(req.body.newCategoryName!=""){
+                        let category= await Category.create({
+                            name: req.body.newCategoryName,
+                            user: req.user._id,
+                        })
+                        cat=req.body.newCategoryName;
+                        user.category.push(category);
+                    }
 
-            
-                user.transactions.push(transaction);
-                user.save();    
-             }
+                    let transaction= await Transaction.create({
+                
+                        content: req.body.amount,
+                        user: req.user._id,
+                        accounttype: req.body.accounttype,
+                        catogery:cat,
+                    });
+        
+                    
+                        user.transactions.push(transaction);
+                        user.save();    
+            }
                 
             //     comment= await comment.populate('user','name email').execPopulate();
             // //calling comments mailer

@@ -45,12 +45,14 @@
         <label>Catogery</label>
         <br>
         <select class="custom-select col-10" name="catogery" onchange="categoryFunction(this)">
-            
-            <option value="income">Income</option>
+            <% for(cl of categoryListItems){ %>
+              <option value="<%=cl%>"><%=cl.name%></option>
+            <% } %>
+            <!-- <option value="income">Income</option>
             <option value="interest">Interest</option>
             <option value="loan">Loan</option>
             <option value="education">Education</option>
-            <option value="food">Food</option>
+            <option value="food">Food</option> -->
             <option value="createNewCategory">Create New</option>
         </select>
       </div>
@@ -61,7 +63,7 @@
       <div id="trf-div" style="display: none">
         <label>Select Source</label>
         <br>
-        <select class="custom-select col-20" name="source" id="src-div" onchange="srcdest()">
+        <select class="custom-select col-10" name="source" id="src-div" onchange="srcdest()">
           
           <option value="cash">CASH</option>
           <option value="card1">CARD 1</option>
@@ -116,7 +118,6 @@
               <td><%=transaction.content%></td>
               <td><%= transaction.accounttype%></td>
               <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
-              
               
             </tr>
          <% } %>
