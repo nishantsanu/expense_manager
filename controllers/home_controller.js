@@ -14,7 +14,7 @@ module.exports.home=  async function(req,res){
 
          let transactions= await Transaction.find({user:req.user._id})
         .sort('-createdAt')
-        .populate('user');
+        .populate('category');
 
          let categoryListItems=await Category.find({user:req.user._id});
         

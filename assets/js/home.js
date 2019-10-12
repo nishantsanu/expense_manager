@@ -19,6 +19,13 @@ if(document.getElementById('src-div').value==document.getElementById('dest-div')
     document.getElementById('src-dest-comp').innerText="";
 }
 
+//category status 
+
+
+
+
+
+
 let submitCheck=false;
 
 function srcdest(){
@@ -33,6 +40,8 @@ function srcdest(){
 
 
 $('#sub-form').on('submit', function(){
+    var i= !document.getElementById('catOptions').value;
+    console.log(i);
     if(trftab==true){
         if(document.getElementById('src-div').value==document.getElementById('dest-div').value){
             alert("Source and Destination cant be same");
@@ -40,6 +49,10 @@ $('#sub-form').on('submit', function(){
         }else{
             return true;
         }
+    }else if(document.getElementById('catOptions').value===""){
+        document.getElementById('categoryStatus').style.color="red";
+        document.getElementById('categoryStatus').innerText="Please Select a Catogery.";
+        return false;
     }else{
         console.log('true hai');
         return true;
@@ -54,5 +67,15 @@ function categoryFunction(val){
      }else{
      document.getElementById('newCategoryDiv').style.display="none";
      }
+
+     if(document.getElementById('catOptions').value===""){
+        document.getElementById('categoryStatus').style.color="red";
+        document.getElementById('categoryStatus').innerText="Please Select a Catogery.";
+    }else{
+        document.getElementById('categoryStatus').style.color="red";
+        document.getElementById('categoryStatus').innerText="";
+    }
+
 }
+
  

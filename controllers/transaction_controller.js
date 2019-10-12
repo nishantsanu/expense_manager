@@ -4,48 +4,53 @@ const Category=require('../models/category');
 
 module.exports.create = async function(req,res){
     try {
+        // console.log(req.body.category);
         let user = await User.findById(req.user._id);
         if(user){
             if(req.body.accounttype=='trf'){
-                console.log(req.body.source);
                 let sourceTransaction= await Transaction.create({
                 
                     content: '-'+req.body.amount,
                     user: req.user._id,
                     accounttype: req.body.source,
-                    catogery: 'transfer',
+                    category: 'transfer',
                 });
                 let destinationTransaction= await Transaction.create({
                 
                     content: req.body.amount,
                     user: req.user._id,
                     accounttype: req.body.destination,
-                    catogery: 'transfer',
+                    category: 'transfer',
                 });
                 user.transactions.push(sourceTransaction);
                 user.transactions.push(destinationTransaction);
                 user.save();
 
             }else{
-                var cat=req.body.catogery;
+                var cat=req.body.category;
                 if(req.body.newCategoryName!=""){
+                    let catFromSchema=await Category.find({name:req.body.newCategoryName});
+                    if(catFromSchema!=""){
+                        cat=catFromSchema[0]._id;
+                    }else{
                         let category= await Category.create({
                             name: req.body.newCategoryName,
                             user: req.user._id,
                         })
-                        cat=req.body.newCategoryName;
                         user.category.push(category);
+                        cat=category._id;
                     }
+                        
+                    }
+                    
 
                     let transaction= await Transaction.create({
                 
                         content: req.body.amount,
                         user: req.user._id,
                         accounttype: req.body.accounttype,
-                        catogery:cat,
+                        category:cat,
                     });
-        
-                    
                         user.transactions.push(transaction);
                         user.save();    
             }

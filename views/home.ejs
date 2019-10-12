@@ -29,6 +29,15 @@
   </nav>
 <div style="display: inline-block; width: 45vw; vertical-align: top; min-width: 300px;">
     <form action="/users/transaction/create" method="POST" id="sub-form">
+      
+      <div>
+          <input TYPE="button" class="btn btn-black m-1" Name="tansMode" Value="Credit" selected>
+          <input TYPE="button" class="btn btn-black m-1" Name="tansMode" Value="Debit">
+          <input TYPE="button" class="btn btn-black m-1" Name="tansMode" Value="Transfer">
+      </div>
+
+     
+      
       <label>Select Account Type</label>
       <br>
       <select class="custom-select col-10" onchange="toggle(this)" name="accounttype">
@@ -44,9 +53,10 @@
           
         <label>Catogery</label>
         <br>
-        <select class="custom-select col-10" name="catogery" onchange="categoryFunction(this)">
+        <select class="custom-select col-10" id="catOptions" name="category" onchange="categoryFunction(this)">
+            <option disabled selected value> -- select an option -- </option>
             <% for(cl of categoryListItems){ %>
-              <option value="<%=cl%>"><%=cl.name%></option>
+              <option value="<%=cl._id%>"><%=cl.name%></option>
             <% } %>
             <!-- <option value="income">Income</option>
             <option value="interest">Interest</option>
@@ -56,6 +66,7 @@
             <option value="createNewCategory">Create New</option>
         </select>
       </div>
+      <span id="categoryStatus"></span>
       <div id="newCategoryDiv" style="display: none">
           <label>Create New Category</label>
           <input type="text" class="form-control col-10" placeholder="Enter name of new catogery" name="newCategoryName">
@@ -108,18 +119,25 @@
         <tr>
           <th>Amount</th>
           <th>Source Account</th>
+          <th>Category</th>
           <th>Delete</th>
         </tr>
       </thead>
       <tbody>
 
+        <% let i=0; %>
           <% for(transaction of transactions){ %>
+          <% if(i==10) break; %>
+
+
            <tr>
               <td><%=transaction.content%></td>
               <td><%= transaction.accounttype%></td>
+              <td><%=transaction.category.name%></td>
               <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
               
             </tr>
+          <% i++ %>
          <% } %>
          <tr>
             <td><h4><%=sum%></h4></td>

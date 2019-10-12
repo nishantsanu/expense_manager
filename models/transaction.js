@@ -13,9 +13,9 @@ const tansactionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    catogery:{
-        type: String,
-        required: true
+    category:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
     }
     //include the array of ids of all the comments in this post schema itself
  
