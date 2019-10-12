@@ -7,6 +7,7 @@ module.exports.create = async function(req,res){
         // console.log(req.body.category);
         let user = await User.findById(req.user._id);
         if(user){
+            console.log(req.body);
             if(req.body.accounttype=='trf'){
                 let sourceTransaction= await Transaction.create({
                 

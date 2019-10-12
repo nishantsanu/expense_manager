@@ -30,23 +30,28 @@
 <div style="display: inline-block; width: 45vw; vertical-align: top; min-width: 300px;">
     <form action="/users/transaction/create" method="POST" id="sub-form">
       
-      <div>
-          <input TYPE="button" class="btn btn-black m-1" Name="tansMode" Value="Credit" selected>
-          <input TYPE="button" class="btn btn-black m-1" Name="tansMode" Value="Debit">
-          <input TYPE="button" class="btn btn-black m-1" Name="tansMode" Value="Transfer">
-      </div>
-
+      
+        <div>
+          <input type="hidden" id="finalTansMode" name='tansMode' value="pata nahi">
+          <input TYPE="button" id="credit"class="btn btn-black m-1 addButton"  Value="Credit" onclick="tansModeFunction(this); hello(this);">
+          <input TYPE="button" id="debit" class="btn btn-black m-1 addButton"  Value="Debit" onclick="tansModeFunction(this); hello(this);">
+          <input TYPE="button" id="transfer"class="btn btn-black m-1 addButton"  Value="Transfer" onclick="tansModeFunction(this); hello(this);">
+        </div>
+      
+        <div id="accountType">
+            <label>Select Account Type</label>
+            <br>
+            <select class="custom-select col-10" onchange="toggle(this)" name="accounttype">
+              
+              <option value="cash">CASH</option>
+              <option value="trf" >TRANSFER</option>
+              <option value="card1">CARD 1</option>
+              <option value="card2">CARD 2</option>
+            </select>
+        </div>
      
       
-      <label>Select Account Type</label>
-      <br>
-      <select class="custom-select col-10" onchange="toggle(this)" name="accounttype">
-          
-          <option value="cash">CASH</option>
-          <option value="trf" >TRANSFER</option>
-          <option value="card1">CARD 1</option>
-          <option value="card2">CARD 2</option>
-        </select>
+        
 
 
       <div id="catogery-div" style="display: block"> 
@@ -58,11 +63,6 @@
             <% for(cl of categoryListItems){ %>
               <option value="<%=cl._id%>"><%=cl.name%></option>
             <% } %>
-            <!-- <option value="income">Income</option>
-            <option value="interest">Interest</option>
-            <option value="loan">Loan</option>
-            <option value="education">Education</option>
-            <option value="food">Food</option> -->
             <option value="createNewCategory">Create New</option>
         </select>
       </div>
@@ -97,6 +97,7 @@
       <div class="form-group">
         <label>Enter amount</label>
         <input type="number" class="form-control col-10" placeholder="Amount" name="amount" required step="any">
+
         <input type="hidden" name="userid" value="<%= user._id %>">
       </div>
       <input type="submit" class="btn btn-black m-1" value="Submit">

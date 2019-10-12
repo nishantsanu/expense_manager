@@ -2,7 +2,17 @@ body {
     font-family: "Lato", sans-serif;
 }
 
+/* .addButton {
+    border-color:red;
+    border-width:1px;
+    background-color:#00B0F0;
+    }
 
+.addButton:active, 
+.addButton:focus 
+{
+    border:1px solid #00c; 
+    }  */
 
 .main-head{
     height: 150px;

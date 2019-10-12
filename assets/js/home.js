@@ -1,14 +1,11 @@
-
-let trftab=false;
+//function for transfer tab
 function toggle(val){
     if(val.value == 'trf'){    
         document.getElementById('catogery-div').style.display='none';
         document.getElementById('trf-div').style.display='block';
-        trftab=true;
     }else{
         document.getElementById('catogery-div').style.display='block';
         document.getElementById('trf-div').style.display='none';
-        trftab=false;
     }
 
 }
@@ -78,4 +75,29 @@ function categoryFunction(val){
 
 }
 
+//function for tansMode
+
+function tansModeFunction(val){
+    document.getElementById('finalTansMode').value=val.value;
+}
+
+function hello(val){
+    var buttons=document.getElementsByClassName('addButton');
+    for(button of buttons){
+        button.style.boxShadow="";
+    }
+    
+    val.style.boxShadow="0 0 0 0.2rem rgba(0,123,255,.25)";
+
+
+    if(val.value == 'Transfer'){    
+        document.getElementById('catogery-div').style.display='none';
+        document.getElementById('trf-div').style.display='block';
+        document.getElementById('accountType').style.display='none';
+    }else{
+        document.getElementById('catogery-div').style.display='block';
+        document.getElementById('trf-div').style.display='none';
+        document.getElementById('accountType').style.display='block';
+    }
+}
  
