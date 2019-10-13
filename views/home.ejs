@@ -139,10 +139,12 @@
       <input TYPE="button" id="Card2Sheet"class="btn btn-light m-1 switchTableButton"  Value="Card 2" onclick="switchTable(this)">
     </div>
 
+    
     <table class="table" id="allTable">
       <thead>
         <tr>
           <th>Amount</th>
+          <th>Balance</th>
           <th>Source Account</th>
           <th>Date and Time</th>
           <th>Category</th>
@@ -151,6 +153,11 @@
       </thead>
       <tbody>
 
+        <%let sumtable=sum;%>
+        <%let cashsumtable=cash;%>
+        <%let card1sumtable=card1;%>
+        <%let card2sumtable=card2;%>
+
         <% let i=0; %>
           <% for(transaction of transactions){ %>
           <% if(i==10) break; %>
@@ -158,11 +165,13 @@
 
            <tr>
               <td><%=transaction.content%></td>
+              <td><%=sumtable%></td>
               <td><%= transaction.accounttype%></td>
               <td class="corrtime"><%= transaction.createdAt%></td>
               <td><%=transaction.category.name%></td>
               <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
             </tr>
+            <% sumtable = sumtable - transaction.content %>
           <% i++ %>
          <% } %>
          <tr>
@@ -178,6 +187,7 @@
       <thead>
         <tr>
           <th>Amount</th>
+          <th>Balance</th>
           <th>Source Account</th>
           <th>Date and Time</th>
           <th>Category</th>
@@ -193,11 +203,13 @@
 
            <tr>
               <td><%=transaction.content%></td>
+              <td><%=cashsumtable%></td>
               <td><%= transaction.accounttype%></td>
               <td class="corrtime"><%= transaction.createdAt%></td>
               <td><%=transaction.category.name%></td>
               <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
             </tr>
+            <% cashsumtable = cashsumtable - transaction.content %>
           <% j++ %>
          <% } %>
          <tr>
@@ -213,6 +225,7 @@
       <thead>
         <tr>
           <th>Amount</th>
+          <th>Balance</th>
           <th>Source Account</th>
           <th>Date and Time</th>
           <th>Category</th>
@@ -228,11 +241,13 @@
 
            <tr>
               <td><%=transaction.content%></td>
+              <td><%=card1sumtable%></td>
               <td><%= transaction.accounttype%></td>
               <td class="corrtime"><%= transaction.createdAt%></td>
               <td><%=transaction.category.name%></td>
               <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
             </tr>
+            <% card1sumtable= card1sumtable-transaction.content %>
           <% k++ %>
          <% } %>
          <tr>
@@ -248,6 +263,7 @@
       <thead>
         <tr>
           <th>Amount</th>
+          <th>Balance</th>
           <th>Source Account</th>
           <th>Date and Time</th>
           <th>Category</th>
@@ -263,11 +279,13 @@
 
            <tr>
               <td><%=transaction.content%></td>
+              <td><%=card2sumtable%></td>
               <td><%= transaction.accounttype%></td>
               <td class="corrtime"><%= transaction.createdAt%></td>
               <td><%=transaction.category.name%></td>
               <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
             </tr>
+            <% card2sumtable=card2sumtable-transaction.content %>
           <% l++ %>
          <% } %>
          <tr>
