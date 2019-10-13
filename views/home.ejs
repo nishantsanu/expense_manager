@@ -54,19 +54,6 @@
       
         
 
-
-      <!-- <div id="catogery-div" style="display: block"> 
-          
-        <label>Catogery</label>
-        <br>
-        <select class="custom-select col-10" id="catOptions" name="category" onchange="categoryFunction(this)">
-            <option disabled selected value> -- select an option -- </option>
-            <% for(cl of categoryListItems){ %>
-              <option value="<%=cl._id%>"><%=cl.name%></option>
-            <% } %>
-            <option value="createNewCategory">Create New</option>
-        </select>
-      </div> -->
       <div id="cr-catogery-div" style="display: none"> 
           
           <label>Credit Category</label>
@@ -143,7 +130,16 @@
 <div class="container">
     <h2>Transaction History</h2>
     <!-- <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p> -->
-    <table class="table">
+    
+    <div >
+      <input type="hidden" id="viewSheet" name='viewSheet' value="none">
+      <input TYPE="button" id="allSheet"class="btn btn-black m-1 addButton"  Value="All" onclick="switchTable(this)">
+      <input TYPE="button" id="cashSheet"class="btn btn-black m-1 addButton"  Value="Cash" onclick="switchTable(this)">
+      <input TYPE="button" id="Card1Sheet" class="btn btn-black m-1 addButton"  Value="Card 1" onclick="switchTable(this)">
+      <input TYPE="button" id="Card2Sheet"class="btn btn-black m-1 addButton"  Value="Card 2" onclick="switchTable(this)">
+    </div>
+
+    <table class="table" id="allTable">
       <thead>
         <tr>
           <th>Amount</th>
@@ -163,12 +159,116 @@
            <tr>
               <td><%=transaction.content%></td>
               <td><%= transaction.accounttype%></td>
-              <td><%= transaction.createdAt%></td>
+              <td class="corrtime"><%= transaction.createdAt%></td>
               <td><%=transaction.category.name%></td>
               <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
-              
             </tr>
           <% i++ %>
+         <% } %>
+         <tr>
+            <td><h4><%=sum%></h4></td>
+            <td><h4>BALANCE</h4></td>
+            <td></td>
+           
+          </tr>
+      </tbody>
+    </table>
+
+    <table class="table" id="cashTable" style="display: none;">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Source Account</th>
+          <th>Date and Time</th>
+          <th>Category</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% let j=0; %>
+          <% for(transaction of transactions){ %>
+          <% if(j==10) break; %>
+
+
+           <tr>
+              <td><%=transaction.content%></td>
+              <td><%= transaction.accounttype%></td>
+              <td class="corrtime"><%= transaction.createdAt%></td>
+              <td><%=transaction.category.name%></td>
+              <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
+            </tr>
+          <% j++ %>
+         <% } %>
+         <tr>
+            <td><h4><%=sum%></h4></td>
+            <td><h4>BALANCE</h4></td>
+            <td></td>
+           
+          </tr>
+      </tbody>
+    </table>
+
+    <table class="table" id="card1Table" style="display: none;">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Source Account</th>
+          <th>Date and Time</th>
+          <th>Category</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% let k=0; %>
+          <% for(transaction of transactions){ %>
+          <% if(k==10) break; %>
+
+
+           <tr>
+              <td><%=transaction.content%></td>
+              <td><%= transaction.accounttype%></td>
+              <td class="corrtime"><%= transaction.createdAt%></td>
+              <td><%=transaction.category.name%></td>
+              <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
+            </tr>
+          <% k++ %>
+         <% } %>
+         <tr>
+            <td><h4><%=sum%></h4></td>
+            <td><h4>BALANCE</h4></td>
+            <td></td>
+           
+          </tr>
+      </tbody>
+    </table>
+
+    <table class="table" id="card2Table" style="display: none;">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Source Account</th>
+          <th>Date and Time</th>
+          <th>Category</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% let l=0; %>
+          <% for(transaction of transactions){ %>
+          <% if(l==10) break; %>
+
+
+           <tr>
+              <td><%=transaction.content%></td>
+              <td><%= transaction.accounttype%></td>
+              <td class="corrtime"><%= transaction.createdAt%></td>
+              <td><%=transaction.category.name%></td>
+              <td><a href="/users/transaction/delete/<%=transaction.id%>" style="display: inline">Delete</a></td>
+            </tr>
+          <% l++ %>
          <% } %>
          <tr>
             <td><h4><%=sum%></h4></td>

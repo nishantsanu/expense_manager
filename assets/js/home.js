@@ -111,3 +111,28 @@ function hello(val){
     }
 }
  
+///substring of time
+
+let times=document.getElementById('time').innerText;
+let timenow=times.substring(0,25);
+document.getElementsByClassName('time').innerText=timenow;
+
+//switch table function
+
+function switchTable(val){
+    document.getElementById('allTable').style.display='none';
+    document.getElementById('cashTable').style.display='none';
+    document.getElementById('card1Table').style.display='none';
+    document.getElementById('card2Table').style.display='none';
+// Cash Card 1 Card 2
+    if(val.value=='All'){
+        document.getElementById('allTable').style.display='';
+    }else if(val.value=='Cash'){
+        document.getElementById('cashTable').style.display='';
+    }else if(val.value=='Card 1'){
+        document.getElementById('card1Table').style.display='';
+    }else if(val.value=='Card 2'){
+        document.getElementById('card2Table').style.display='';
+    }
+
+}

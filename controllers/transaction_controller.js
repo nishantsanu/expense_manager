@@ -7,19 +7,36 @@ module.exports.create = async function(req,res){
         let user = await User.findById(req.user._id);
         if(user){
             if(req.body.tansMode=='Transfer'){
+                
+                let trfCat="";
+                let trfCatFromSchema=await Category.find({name:'Transfer',transactionType:'Transfer'});
+                if(trfCatFromSchema!=""){
+                    trfCat=trfCatFromSchema[0]._id;
+                }else{
+                    let category= await Category.create({
+                        name: 'Transfer',
+                        user: req.user._id,
+                        transactionType: 'Transfer',
+                    })
+                    user.category.push(category);
+                    trfCat=category._id;
+                }
+
+
+
                 let sourceTransaction= await Transaction.create({
                 
                     content: '-'+req.body.amount,
                     user: req.user._id,
                     accounttype: req.body.source,
-                    category: 'transfer',
+                    category: trfCat,
                 });
                 let destinationTransaction= await Transaction.create({
                 
                     content: req.body.amount,
                     user: req.user._id,
                     accounttype: req.body.destination,
-                    category: 'transfer',
+                    category: trfCat,
                 });
                 user.transactions.push(sourceTransaction);
                 user.transactions.push(destinationTransaction);

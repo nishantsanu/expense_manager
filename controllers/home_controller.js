@@ -40,7 +40,6 @@ module.exports.home=  async function(req,res){
         return res.render('home',{
             title: "ExpManager | Home",
             transactions: transactions,
-            categoryListItems:categoryListItems,
             crListItems:crListItems,
             drListItems:drListItems,
             sum:sum,
