@@ -133,10 +133,10 @@
     
     <div >
       <input type="hidden" id="viewSheet" name='viewSheet' value="none">
-      <input TYPE="button" id="allSheet"class="btn btn-black m-1 addButton"  Value="All" onclick="switchTable(this)">
-      <input TYPE="button" id="cashSheet"class="btn btn-black m-1 addButton"  Value="Cash" onclick="switchTable(this)">
-      <input TYPE="button" id="Card1Sheet" class="btn btn-black m-1 addButton"  Value="Card 1" onclick="switchTable(this)">
-      <input TYPE="button" id="Card2Sheet"class="btn btn-black m-1 addButton"  Value="Card 2" onclick="switchTable(this)">
+      <input TYPE="button" id="allSheet"class="btn btn-light m-1 switchTableButton startTable"  Value="All" onclick="switchTable(this)">
+      <input TYPE="button" id="cashSheet"class="btn btn-light m-1 switchTableButton"  Value="Cash" onclick="switchTable(this)">
+      <input TYPE="button" id="Card1Sheet" class="btn btn-light m-1 switchTableButton"  Value="Card 1" onclick="switchTable(this)">
+      <input TYPE="button" id="Card2Sheet"class="btn btn-light m-1 switchTableButton"  Value="Card 2" onclick="switchTable(this)">
     </div>
 
     <table class="table" id="allTable">
@@ -187,7 +187,7 @@
       <tbody>
 
         <% let j=0; %>
-          <% for(transaction of transactions){ %>
+          <% for(transaction of cashTransactions){ %>
           <% if(j==10) break; %>
 
 
@@ -201,8 +201,8 @@
           <% j++ %>
          <% } %>
          <tr>
-            <td><h4><%=sum%></h4></td>
-            <td><h4>BALANCE</h4></td>
+            <td><h4><%=cash%></h4></td>
+            <td><h4>CASH BALANCE</h4></td>
             <td></td>
            
           </tr>
@@ -222,7 +222,7 @@
       <tbody>
 
         <% let k=0; %>
-          <% for(transaction of transactions){ %>
+          <% for(transaction of card1Transactions){ %>
           <% if(k==10) break; %>
 
 
@@ -236,8 +236,8 @@
           <% k++ %>
          <% } %>
          <tr>
-            <td><h4><%=sum%></h4></td>
-            <td><h4>BALANCE</h4></td>
+            <td><h4><%=card1%></h4></td>
+            <td><h4>CARD 1 BALANCE</h4></td>
             <td></td>
            
           </tr>
@@ -257,7 +257,7 @@
       <tbody>
 
         <% let l=0; %>
-          <% for(transaction of transactions){ %>
+          <% for(transaction of card2Transactions){ %>
           <% if(l==10) break; %>
 
 
@@ -271,8 +271,8 @@
           <% l++ %>
          <% } %>
          <tr>
-            <td><h4><%=sum%></h4></td>
-            <td><h4>BALANCE</h4></td>
+            <td><h4><%=card2%></h4></td>
+            <td><h4>CARD 2 BALANCE</h4></td>
             <td></td>
            
           </tr>

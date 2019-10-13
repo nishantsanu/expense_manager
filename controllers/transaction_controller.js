@@ -43,11 +43,16 @@ module.exports.create = async function(req,res){
                 user.save();
 
             }else{
-                var cat=req.body.category;
+                var cat=req.body.crCategory;
+                if(req.body.tansMode=='Debit'){
+                    cat=req.body.drCategory;
+                }
+                console.log('*a(a9(**' + cat);
                 if(req.body.newCategoryName!=""){
                     let catFromSchema=await Category.find({name:req.body.newCategoryName,transactionType:req.body.tansMode});
                     if(catFromSchema!=""){
                         cat=catFromSchema[0]._id;
+                        console.log('***' + cat);
                     }else{
                         let category= await Category.create({
                             name: req.body.newCategoryName,
@@ -68,6 +73,7 @@ module.exports.create = async function(req,res){
                         accounttype: req.body.accounttype,
                         category:cat,
                     });
+                        console.log(transaction);
                         user.transactions.push(transaction);
                         user.save();    
             }

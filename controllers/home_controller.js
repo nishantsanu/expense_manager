@@ -16,6 +16,19 @@ module.exports.home=  async function(req,res){
         .sort('-createdAt')
         .populate('category');
 
+        let cashTransactions= await Transaction.find({user:req.user._id,accounttype:'cash'})
+        .sort('-createdAt')
+        .populate('category');
+
+        let card1Transactions= await Transaction.find({user:req.user._id,accounttype:'card1'})
+        .sort('-createdAt')
+        .populate('category');
+
+        let card2Transactions= await Transaction.find({user:req.user._id,accounttype:'card2'})
+        .sort('-createdAt')
+        .populate('category');
+
+
          let categoryListItems=await Category.find({user:req.user._id});
          let crListItems=await Category.find({user:req.user._id,transactionType:'Credit'});
          let drListItems=await Category.find({user:req.user._id,transactionType:'Debit'});
@@ -39,6 +52,9 @@ module.exports.home=  async function(req,res){
         
         return res.render('home',{
             title: "ExpManager | Home",
+            cashTransactions:cashTransactions,
+            card1Transactions:card1Transactions,
+            card2Transactions:card2Transactions,
             transactions: transactions,
             crListItems:crListItems,
             drListItems:drListItems,

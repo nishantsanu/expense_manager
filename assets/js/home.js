@@ -1,3 +1,12 @@
+
+// on starting page
+
+
+document.getElementsByClassName('startTable')[0].style.boxShadow="0 0 0 0.2rem rgba(0,123,255,.25)";
+document.getElementsByClassName('startTable')[0].style.background="lightblue";
+
+
+
 //function for transfer tab
 function toggle(val){
     if(val.value == 'trf'){    
@@ -111,15 +120,20 @@ function hello(val){
     }
 }
  
-///substring of time
-
-let times=document.getElementById('time').innerText;
-let timenow=times.substring(0,25);
-document.getElementsByClassName('time').innerText=timenow;
 
 //switch table function
 
 function switchTable(val){
+
+    var buttons=document.getElementsByClassName('switchTableButton');
+    for(button of buttons){
+        button.style.boxShadow="";
+        button.style.background="";
+    }
+    
+    val.style.boxShadow="0 0 0 0.2rem rgba(0,123,255,.25)";
+    val.style.background="lightblue";
+
     document.getElementById('allTable').style.display='none';
     document.getElementById('cashTable').style.display='none';
     document.getElementById('card1Table').style.display='none';
