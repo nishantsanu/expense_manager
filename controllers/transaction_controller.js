@@ -42,17 +42,22 @@ module.exports.create = async function(req,res){
                 user.transactions.push(destinationTransaction);
                 user.save();
 
+            }else if(req.body.tansMode=='Transfer'){
+
+
+
+
             }else{
                 var cat=req.body.crCategory;
+                var amt=req.body.amount;
                 if(req.body.tansMode=='Debit'){
                     cat=req.body.drCategory;
+                    amt= '-' + amt ;
                 }
-                console.log('*a(a9(**' + cat);
                 if(req.body.newCategoryName!=""){
                     let catFromSchema=await Category.find({name:req.body.newCategoryName,transactionType:req.body.tansMode});
                     if(catFromSchema!=""){
                         cat=catFromSchema[0]._id;
-                        console.log('***' + cat);
                     }else{
                         let category= await Category.create({
                             name: req.body.newCategoryName,
@@ -68,7 +73,7 @@ module.exports.create = async function(req,res){
 
                     let transaction= await Transaction.create({
                 
-                        content: req.body.amount,
+                        content: amt,
                         user: req.user._id,
                         accounttype: req.body.accounttype,
                         category:cat,
@@ -78,17 +83,7 @@ module.exports.create = async function(req,res){
                         user.save();    
             }
                 
-            //     comment= await comment.populate('user','name email').execPopulate();
-            // //calling comments mailer
-            //     commentsMailer.newComment(comment);
-            //     if(req.xhr){
-            //         return res.status(200).json({
-            //             data: {
-            //                 comment: comment,
-            //             },
-            //             message: "Comment created!"
-            //         });
-            //     }
+            
         }
 
         return res.redirect('back');

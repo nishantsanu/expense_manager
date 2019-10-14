@@ -1,5 +1,10 @@
 body {
     font-family: "Lato", sans-serif;
+    /* background-image:url(https://data.whicdn.com/images/306321608/original.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+
 }
 
 
@@ -24,6 +29,7 @@ body {
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
 }
+
 
 @media screen and (max-width: 450px) {
     .login-form{
