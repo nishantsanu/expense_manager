@@ -19,6 +19,7 @@ module.exports.home=  async function(req,res){
         let cashTransactions= await Transaction.find({user:req.user._id,accounttype:'cash'})
         .sort('-createdAt')
         .populate('category');
+      
 
         let card1Transactions= await Transaction.find({user:req.user._id,accounttype:'card1'})
         .sort('-createdAt')
@@ -49,6 +50,7 @@ module.exports.home=  async function(req,res){
                 card2=card2+parseFloat(i.content);
             }
         }
+        console.log(transactions);
         
         return res.render('home',{
             title: "ExpManager | Home",

@@ -43,7 +43,7 @@
         <div id="accountType">
             <label>Select Account Type</label>
             <br>
-            <select class="custom-select col-10" onchange="toggle(this)" name="accounttype">
+            <select class="custom-select col-10"  name="accounttype">
               
               <option value="cash">CASH</option>
               <!-- <option value="trf" >TRANSFER</option> -->
@@ -112,7 +112,7 @@
 
       <div class="form-group">
         <label>Enter amount</label>
-        <input type="number" class="form-control col-10" placeholder="Amount" name="amount" required step="any">
+        <input type="number" class="form-control col-10" placeholder="Amount" name="amount" required step="any" min='0.01'>
 
         <input type="hidden" name="userid" value="<%= user._id %>">
       </div>

@@ -7,17 +7,6 @@ document.getElementsByClassName('startTable')[0].style.background="lightblue";
 
 
 
-//function for transfer tab
-function toggle(val){
-    if(val.value == 'trf'){    
-        document.getElementById('catogery-div').style.display='none';
-        document.getElementById('trf-div').style.display='block';
-    }else{
-        document.getElementById('catogery-div').style.display='block';
-        document.getElementById('trf-div').style.display='none';
-    }
-
-}
 
 if(document.getElementById('src-div').value==document.getElementById('dest-div').value){
     document.getElementById('src-dest-comp').innerText="Source and Destination cant be same";
@@ -45,7 +34,9 @@ function srcdest(){
 }
 
 
+
 $('#sub-form').on('submit', function(){
+
     if(document.getElementById('finalTansMode').value=='none'){
         document.getElementById('tansModeStatus').style.color='red';
         document.getElementById('tansModeStatus').innerText="Please Select Mode.";
@@ -57,7 +48,7 @@ $('#sub-form').on('submit', function(){
         }else{
             return true;
         }
-    }else if(document.getElementById('catOptions').value===""){
+    }else if(document.getElementById('drCatOptions').value==="" && document.getElementById('crCatOptions').value===""){
         document.getElementById('categoryStatus').style.color="red";
         document.getElementById('categoryStatus').innerText="Please Select a Catogery.";
         return false;
@@ -76,7 +67,7 @@ function categoryFunction(val){
      document.getElementById('newCategoryDiv').style.display="none";
      }
 
-     if(document.getElementById('catOptions').value===""){
+     if(document.getElementById('drCatOptions').value===""&&document.getElementById('crCatOptions').value===""){
         document.getElementById('categoryStatus').style.color="red";
         document.getElementById('categoryStatus').innerText="Please Select a Catogery.";
     }else{
@@ -87,6 +78,7 @@ function categoryFunction(val){
 }
 
 //function for tansMode
+let trftab=false;
 
 function tansModeFunction(val){
     document.getElementById('finalTansMode').value=val.value;
@@ -103,16 +95,19 @@ function hello(val){
 
 
     if(val.value == 'Transfer'){    
+        trftab=true;
         document.getElementById('dr-catogery-div').style.display='none';
         document.getElementById('cr-catogery-div').style.display='none';
         document.getElementById('trf-div').style.display='block';
         document.getElementById('accountType').style.display='none'
     }else if(val.value=='Debit'){
+        trftab=false;
         document.getElementById('dr-catogery-div').style.display='block';
         document.getElementById('cr-catogery-div').style.display='none';
         document.getElementById('trf-div').style.display='none';
         document.getElementById('accountType').style.display='block';
     }else{
+        trftab=false;
         document.getElementById('dr-catogery-div').style.display='none';
         document.getElementById('cr-catogery-div').style.display='block';
         document.getElementById('trf-div').style.display='none';
@@ -125,6 +120,7 @@ function hello(val){
 
 function switchTable(val){
 
+    var divelem=document.getElementById('tableDiv')
     var buttons=document.getElementsByClassName('switchTableButton');
     for(button of buttons){
         button.style.boxShadow="";

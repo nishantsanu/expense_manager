@@ -33,6 +33,8 @@ module.exports.signup=function(req,res){
 
 
 module.exports.create=function(req,res){
+    console.log("inside create");
+
     if(req.body.password!=req.body.confirm_password){
         return res.redirect('back');
     }
